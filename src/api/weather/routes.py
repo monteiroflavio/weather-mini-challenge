@@ -1,7 +1,8 @@
 from flask import Blueprint
+from api.weather.business import businessTest
 
-weather = Blueprint('weather', __name__)
+weather_api = Blueprint('weather_api', __name__)
 
-@weather.route('/weathers')
+@weather_api.route('/weathers')
 def test():
-    return {'message': 'test'}
+    return businessTest()
