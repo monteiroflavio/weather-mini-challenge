@@ -10,7 +10,7 @@ setup(
     author='Flávio Monteiro',
     author_email='fm070795@gmail.com',
     url='http://my.cool.example.com',
-    packages=['api','api.weather'],
+    packages=['api','api.weathers', 'api.cities'],
     entry_points={
         'console_scripts': [
             'run = api.server:run'
@@ -18,7 +18,7 @@ setup(
     },
     package_dir={'api': 'api'},
     include_package_data=True,
-    install_requires=['flask',],
+    install_requires=['flask','python-dotenv'],
     license="BSD",
     zip_safe=False,
     keywords='',
