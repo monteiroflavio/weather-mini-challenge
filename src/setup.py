@@ -10,15 +10,28 @@ setup(
     author='Flávio Monteiro',
     author_email='fm070795@gmail.com',
     url='http://my.cool.example.com',
-    packages=['api','api.weathers', 'api.cities'],
+    packages=[
+        'api'
+        ,'api.weathers'
+        ,'api.weathers.exceptions'
+        , 'api.cities'
+        , 'configs'
+        , 'utils'
+        , 'utils.exceptions'
+
+    ],
     entry_points={
         'console_scripts': [
             'run = api.server:run'
         ],
     },
-    package_dir={'api': 'api'},
+    package_dir={
+        'api': 'api'
+        , 'config': 'config'
+        , 'utils': 'utils'
+    },
     include_package_data=True,
-    install_requires=['flask','python-dotenv'],
+    install_requires=['flask', 'flask-swagger', 'python-dotenv'],
     license="BSD",
     zip_safe=False,
     keywords='',
