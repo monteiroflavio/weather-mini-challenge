@@ -8,7 +8,11 @@ from configs.config import OWM_API_KEY, OWM_API_URL, HUMIDITY_THRESHOLD
 
 class WeatherBusiness:
     def get_forecast_summary_for(self, city_id):
-        owm_response = requests.get('{0}?id={1}&appid={2}&units=metric'.format(OWM_API_URL, city_id, OWM_API_KEY))
+        owm_response = requests.get(OWM_API_URL, params={
+            'id': city_id,
+            'appid': OWM_API_KEY,
+            'units': 'metric'
+        })
         if owm_response.ok:
             return summarize_forecasts(json.loads(owm_response.content))
         elif owm_response.status_code == 404 :
@@ -16,7 +20,6 @@ class WeatherBusiness:
         else:
             raise OwmApiCallException()
         
-
 def summarize_forecasts(owm_response):
     summary = []
     for forecast in owm_response['list']:
@@ -46,7 +49,8 @@ def summarize_forecast(forecast, summary):
     return summary
 
 def summary_message(daily_processed_response):
-    return 'You should take an umbrella these days: '+', '.join([d['date'] for d in daily_processed_response if d['humidity'] > HUMIDITY_THRESHOLD])
+    print([d['humidity'] > int(HUMIDITY_THRESHOLD) for d in daily_processed_response])
+    return 'You should take an umbrella these days: '+', '.join([d['date'] for d in daily_processed_response if d['humidity'] > int(HUMIDITY_THRESHOLD)])
 
 def mount_message(humidity):
     if humidity >= 0 and humidity < 10:

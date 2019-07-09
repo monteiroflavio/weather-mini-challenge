@@ -18,11 +18,10 @@ setup(
         , 'configs'
         , 'utils'
         , 'utils.exceptions'
-
     ],
     entry_points={
         'console_scripts': [
-            'run = api.server:run'
+            'run = api.server:run',
         ],
     },
     package_dir={
@@ -31,7 +30,7 @@ setup(
         , 'utils': 'utils'
     },
     include_package_data=True,
-    install_requires=['flask', 'flask-swagger', 'python-dotenv'],
+    install_requires=['flask', 'python-dotenv'],
     license="BSD",
     zip_safe=False,
     keywords='',
